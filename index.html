@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Even Realities G2 | STYLE CLOSET</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+
+  :root{
+    --bg:#fdfcfb;
+    --ink:#0a0a0a;
+    --ink-soft:#4c4c4c;
+    --ink-faint:#8a8a8a;
+    --navy:#344a68;
+    --navy-deep:#26374d;
+    --red:#b50000;
+    --line: rgba(10,10,10,0.14);
+    --line-soft: rgba(10,10,10,0.08);
+  }
+
+  *{ box-sizing:border-box; }
+  html, body{ margin:0; background:var(--bg); }
+  body{
+    color:var(--ink);
+    font-family:"Noto Sans JP", "Hiragino Kaku Gothic Pro", sans-serif;
+    font-size:15px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  img, svg{ max-width:100%; display:block; }
+  .wrap{ max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,40px); }
+  a{ color:inherit; text-decoration:none; }
+  .eng{ font-family:"Old Standard TT", serif; }
+
+  /* ---------- プレビュー用の見出しバー ---------- */
+  .preview-bar{
+    background:#fdf3ea;
+    border-bottom:1px solid #e8c9a0;
+    color:#7a4a12;
+    font-size:0.82rem;
+    line-height:1.7;
+    padding:12px clamp(16px,4vw,28px);
+  }
+  .preview-bar strong{ font-weight:700; }
+
+  /* ---------- LPヘッダー(簡易) ---------- */
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:1080px;
+    margin:0 auto;
+    padding:22px clamp(20px,5vw,40px);
+  }
+  .site-logo{
+    font-family:"Old Standard TT", serif;
+    font-weight:700;
+    font-size:1.1rem;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- LP: intro grid ---------- */
+  .news-v3-grid{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    align-items:center;
+    gap:clamp(16px,4vw,64px);
+    width:fit-content;
+    max-width:100%;
+    margin:0 auto;
+    padding:clamp(4px,1vw,12px) clamp(16px,3vw,28px) clamp(16px,2.5vw,32px);
+  }
+  .news-v3-visual img{ width:100%; max-width:340px; margin:0; }
+  @media (prefers-reduced-motion: no-preference){
+    .reveal-img img{
+      clip-path:inset(0 0 100% 0);
+      opacity:0;
+      transform:scale(1.04);
+      transition:
+        clip-path 2.4s cubic-bezier(.16,1,.3,1),
+        opacity 2s cubic-bezier(.16,1,.3,1),
+        transform 2.4s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal-img.is-revealed img{
+      clip-path:inset(0 0 0% 0);
+      opacity:1;
+      transform:scale(1);
+    }
+  }
+  .news-v3-copy .eng{
+    display:block;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    font-style:italic;
+    margin-bottom:16px;
+  }
+  .news-v3-headline{
+    font-family:"Noto Serif JP", serif;
+    font-weight:500;
+    font-size:clamp(2.1rem,4.2vw,3.1rem);
+    line-height:1.4;
+    letter-spacing:0.02em;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .news-v3-slogan{
+    font-family:"Old Standard TT", serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    text-wrap:balance;
+    margin:0 0 28px;
+  }
+  .news-v3-lede-heading{
+    font-family:"Noto Serif JP", serif;
+    font-weight:500;
+    font-size:1.05rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .news-v3-lede{
+    max-width:34em;
+    color:var(--ink-soft);
+    font-size:1.1rem;
+    line-height:2;
+    margin:0 0 40px;
+  }
+  .news-v3-cta{
+    display:inline-block;
+    border:1px solid var(--navy);
+    color:#fff;
+    background:var(--navy);
+    font-family:"Old Standard TT", serif;
+    font-weight:700;
+    font-size:0.95rem;
+    letter-spacing:0.12em;
+    padding:19px 46px;
+    transition:background .2s, border-color .2s, color .2s;
+  }
+  .news-v3-cta:hover, .news-v3-cta:focus-visible{ background:#fff; color:var(--navy); }
+  .news-v3-cta:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; }
+  @media (max-width:760px){
+    .news-v3-grid{ grid-template-columns:1fr; width:auto; min-height:calc(100vh - 90px); min-height:calc(100dvh - 90px); align-content:center; }
+    .news-v3-visual img{ max-width:none; width:100%; height:min(40vh,300px); object-fit:cover; object-position:center 30%; }
+    .news-v3-headline{ font-size:clamp(1.7rem,7vw,2.1rem); margin-bottom:12px; }
+    .news-v3-slogan{ margin-bottom:18px; }
+    .news-v3-lede{ font-size:1.05rem; line-height:1.9; margin-bottom:24px; }
+    .news-v3-cta{ font-size:1.05rem; padding:17px 40px; }
+    .sticky-cta-btn{ font-size:1.15rem; letter-spacing:0.06em; padding:17px; }
+    .news-v3-slider{ margin-top:28px; }
+  }
+
+  /* ---------- LP: image slider ---------- */
+  .news-v3-slider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,40px);
+  }
+  .news-v3-slider-track{
+    display:flex;
+    flex:1;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    gap:16px;
+    scrollbar-width:none;
+  }
+  .news-v3-slider-track::-webkit-scrollbar{ display:none; }
+  .v3-slide{
+    flex:0 0 calc((100% - 32px) / 1.35);
+    scroll-snap-align:start;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  @media (min-width:640px){
+    .v3-slide{ flex:0 0 calc((100% - 32px) / 3); }
+  }
+  @media (max-width:639px){
+    .news-v3-slider-track{ padding:0 11%; scroll-padding-inline:11%; }
+    .v3-slide{ flex:0 0 78%; scroll-snap-align:center; }
+  }
+  .v3-slide img{ width:100%; display:block; cursor:zoom-in; transition:transform .3s ease; }
+  @media (hover:hover) and (pointer:fine){
+    .v3-slide img:hover{ transform:scale(1.04); }
+  }
+
+  /* ---------- 追従CTA ---------- */
+  .sticky-cta{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:60;
+    background:var(--bg);
+    border-top:1px solid var(--line-soft);
+    box-shadow:0 -6px 20px rgba(10,10,10,0.1);
+    padding:12px clamp(16px,4vw,28px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .sticky-cta.is-visible{ opacity:1; pointer-events:auto; }
+  .sticky-cta-btn{
+    display:block;
+    max-width:480px;
+    margin:0 auto;
+    text-align:center;
+    background:var(--navy);
+    border:1px solid var(--navy);
+    color:#fff;
+    font-family:"Old Standard TT", serif;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    padding:13px;
+    transition:background .2s, color .2s;
+  }
+  .sticky-cta-btn:hover, .sticky-cta-btn:focus-visible{ background:#fff; color:var(--navy); }
+  .sticky-cta-btn:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:#0a0a0a;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    z-index:100;
+  }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{
+    max-width:90vw;
+    max-height:90vh;
+    width:auto;
+    display:block;
+    cursor:zoom-out;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:24px; right:32px;
+    background:none;
+    border:1px solid rgba(255,255,255,0.4);
+    color:#fff;
+    width:36px; height:36px;
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    transition:border-color .2s;
+  }
+  .lightbox-close:hover{ border-color:#fff; }
+  .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+  .lightbox-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:1px solid rgba(255,255,255,0.4);
+    color:#fff;
+    width:44px; height:44px;
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    transition:border-color .2s;
+  }
+  .lightbox-nav:hover{ border-color:#fff; }
+  .lightbox-nav:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+  .lightbox-prev{ left:16px; }
+  .lightbox-next{ right:16px; }
+  @media (max-width:640px){
+    .lightbox{ padding:16px; }
+    .lightbox-nav{ width:36px; height:36px; font-size:1.1rem; }
+  }
+  .v3-slider-nav{
+    flex:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px; height:36px;
+    border:1px solid var(--line-soft);
+    background:var(--bg);
+    color:var(--ink);
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    transition:border-color .2s;
+  }
+  .v3-slider-nav:hover{ border-color:var(--ink); }
+  .v3-slider-nav:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+  .v3-slider-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin:20px 0 40px;
+  }
+  .v3-slider-dots button{
+    width:8px; height:8px;
+    border-radius:50%;
+    border:none;
+    background:rgba(10,10,10,0.22);
+    padding:0;
+    cursor:pointer;
+    transition:width .2s, background .2s;
+  }
+  .v3-slider-dots button.is-active{ width:22px; border-radius:4px; background:var(--ink); }
+
+  /* ---------- LP: feature list / launch banner ---------- */
+  .v3-copy-block{
+    max-width:900px;
+    margin:clamp(48px,8vw,88px) auto 14px;
+    padding:0 clamp(16px,3vw,28px);
+    text-align:left;
+  }
+  .v3-copy-block h3{
+    font-family:"Noto Serif JP", serif;
+    font-weight:500;
+    font-size:clamp(1.5rem,3vw,2rem);
+    line-height:1.3;
+    margin:0 0 14px;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+  .h3-suffix{ font-size:0.78em; color:var(--ink-soft); }
+  @media (max-width:760px){
+    .v3-copy-block{ margin-top:60px; }
+    .v3-copy-block h3{ font-size:1.75rem; }
+  }
+  .mid-cta{
+    max-width:900px;
+    margin:clamp(20px,3vw,32px) auto 0;
+    padding:0 clamp(16px,3vw,28px);
+    text-align:center;
+  }
+  .news-v3-feature-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    max-width:900px;
+    margin:0 auto 28px;
+    border-top:1px solid var(--line-soft);
+  }
+  .v3-slider-dots + .news-v3-feature-list{ margin-top:28px; }
+  .feature-list-4col{
+    grid-template-columns:repeat(4,1fr);
+    max-width:900px;
+    border-top:none;
+    gap:8px 20px;
+  }
+  .feature-list-4col .feature-item{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:16px;
+    padding:8px 8px 0;
+    border:none;
+    min-width:0;
+  }
+  .feature-list-4col .feature-text{ min-width:0; max-width:100%; }
+  .feature-list-4col .feature-icon{ width:100px; height:100px; margin:0; }
+  .feature-list-4col .feature-item:nth-child(odd){ border-right:none; }
+  .feature-list-4col .feature-item{ padding-left:0; padding-right:0; }
+  .feature-list-4col .sub{ font-size:0.72rem; word-break:keep-all; overflow-wrap:break-word; }
+  @media (max-width:760px){
+    .feature-list-4col{ grid-template-columns:1fr 1fr; row-gap:36px; }
+  }
+  @media (max-width:640px){
+    .feature-list-4col{ grid-template-columns:1fr; }
+    .feature-list-4col .feature-item{ flex-direction:row; align-items:flex-start; text-align:left; padding-left:16px; padding-right:16px; }
+  }
+  .feature-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px clamp(16px,3vw,28px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .feature-item:nth-child(odd){ border-right:1px solid var(--line-soft); }
+  .feature-icon{ flex:none; width:44px; height:44px; margin:0; }
+  .feature-item strong{
+    display:block;
+    font-size:1rem;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+    text-wrap:balance;
+  }
+  .feature-item .sub{
+    display:block;
+    font-size:0.82rem;
+    color:#3E4B5D;
+    line-height:1.6;
+    text-wrap:balance;
+  }
+  .no-break{ white-space:nowrap; }
+  .spec-grid{
+    display:grid;
+    grid-template-columns:1fr 360px;
+    align-items:start;
+    gap:40px;
+    max-width:900px;
+    margin:0 auto;
+    padding:0 clamp(16px,3vw,28px);
+  }
+  .spec-photo{ padding-top:16px; }
+  .spec-photo img{
+    width:100%; height:auto; display:block;
+    filter:grayscale(45%) saturate(0.8) brightness(0.97) contrast(1.05);
+  }
+
+  .spec-dl{
+    display:grid;
+    grid-template-columns:8em 1fr;
+    row-gap:16px;
+    column-gap:20px;
+    margin:0;
+    font-size:0.95rem;
+  }
+  .spec-dl dt:not(:last-of-type),
+  .spec-dl dd:not(:last-of-type){
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  @media (max-width:760px){
+    .spec-grid{ grid-template-columns:1fr; }
+    .spec-photo{ order:-1; max-width:280px; margin:0 auto; padding-top:0; }
+  }
+  .spec-dl dt{
+    color:var(--ink-soft);
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    padding-top:4px;
+    padding-left:10px;
+    min-width:0;
+  }
+  .spec-dl dd{
+    margin:0;
+    color:var(--ink);
+    line-height:1.8;
+    min-width:0;
+    text-wrap:balance;
+  }
+  .spec-sub{
+    display:block;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    font-weight:400;
+    margin-top:2px;
+  }
+  .spec-official-link{
+    max-width:900px;
+    margin:16px auto 28px;
+    padding:0 clamp(16px,3vw,28px);
+    text-align:right;
+    font-size:0.85rem;
+  }
+  .spec-official-link a{
+    color:var(--navy);
+    text-decoration:underline;
+  }
+  .spec-official-link a:hover{ color:var(--navy-deep); }
+
+  @media (max-width:640px){
+    .news-v3-feature-list{ grid-template-columns:1fr; }
+    .feature-item:nth-child(odd){ border-right:none; }
+  }
+
+  /* ---------- LP: reserve block ---------- */
+  .news-v3-overview{
+    max-width:900px;
+    margin:24px auto 0;
+    padding:20px clamp(16px,3vw,28px) clamp(32px,5vw,56px);
+    border-top:1px solid var(--line-soft);
+  }
+  .news-v3-overview dl{
+    display:grid;
+    grid-template-columns:8em 1fr;
+    row-gap:24px;
+    column-gap:20px;
+    margin:0;
+    max-width:44em;
+    font-size:0.95rem;
+  }
+  .news-v3-overview dt{ color:var(--ink-soft); font-size:0.82rem; letter-spacing:0.03em; padding-top:4px; min-width:0; }
+  .news-v3-overview dd{ margin:0; color:var(--ink); line-height:2.1; min-width:0; text-wrap:balance; }
+  .color-dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:inline-block;
+    border:1px solid rgba(10,10,10,0.15);
+  }
+
+  .overview-grid{
+    display:grid;
+    grid-template-columns:1fr 260px;
+    gap:32px;
+    align-items:start;
+  }
+  .model-switcher-photo img{ width:100%; height:auto; display:block; }
+  .model-switcher-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    margin-top:12px;
+    border:1px solid var(--navy);
+  }
+  .model-tab{
+    background:none;
+    border:none;
+    color:var(--navy);
+    padding:6px 6px;
+    text-align:center;
+    cursor:pointer;
+    line-height:1.4;
+  }
+  .model-tab + .model-tab{ border-left:1px solid var(--navy); }
+  .model-tab-label{ display:block; font-size:0.74rem; font-weight:500; color:inherit; }
+  .model-tab.is-active{ background:var(--navy); color:#fff; }
+  .model-tab:focus-visible{ outline:2px solid var(--red); outline-offset:-3px; }
+  .model-switcher-colors{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:14px;
+  }
+  .color-dot-btn{
+    background:none;
+    border:2px solid transparent;
+    border-radius:50%;
+    width:26px;
+    height:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    cursor:pointer;
+  }
+  .color-dot-btn .color-dot{ pointer-events:none; }
+  .color-dot-btn.is-active{ border-color:var(--navy); }
+  .color-dot-btn:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+  @media (max-width:760px){
+    .overview-grid{ grid-template-columns:1fr; }
+    .model-switcher{ max-width:280px; margin:0 auto; }
+  }
+
+  /* ---------- LP: reservation form ---------- */
+  .form-fields{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:12em 1fr;
+    align-items:start;
+    gap:10px 20px;
+  }
+  .form-row label{
+    padding-top:11px;
+    color:var(--ink-soft);
+    font-size:0.9rem;
+  }
+  .attention{ color:var(--red); display:inline-block; padding-left:0.3rem; font-size:0.85em; }
+
+  .wpcf7-form-control.wpcf7-radio{ display:flex; flex-wrap:wrap; gap:10px 28px; padding-top:11px; }
+  .wpcf7-form-control.wpcf7-radio .wpcf7-list-item{ margin:0; }
+  .wpcf7-form-control.wpcf7-radio .wpcf7-list-item-label{ margin-left:6px; font-size:0.95rem; color:var(--ink); }
+  @media (max-width:640px){
+    .wpcf7-form-control.wpcf7-radio{ padding-top:4px; }
+  }
+
+  .field-input, .field-textarea{
+    width:100%;
+    font-family:inherit;
+    font-size:0.95rem;
+    color:var(--ink);
+    background:var(--bg);
+    border:1px solid var(--line);
+    padding:10px 12px;
+  }
+  .field-textarea{ min-height:110px; resize:vertical; }
+  .field-input:focus-visible, .field-textarea:focus-visible{ outline:2px solid var(--navy); outline-offset:1px; }
+  @media (max-width:640px){
+    .form-row{ grid-template-columns:1fr; gap:6px; }
+    .form-row label{ padding-top:0; }
+  }
+
+  /* ---------- LP: calendar (booking) widget ---------- */
+  .calendar-field{ margin-top:28px; padding-top:22px; border-top:1px solid var(--line-soft); }
+  .calendar-label{
+    padding:0 0 4px;
+    font-weight:500;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+  .calendar-widget{ padding:16px 4px 4px; max-width:480px; margin:0 auto; }
+  .cal-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  .cal-month{
+    font-family:"Old Standard TT", serif;
+    font-size:1rem;
+    letter-spacing:0.05em;
+    min-width:7.5em;
+    text-align:center;
+  }
+  .cal-nav{
+    background:none;
+    border:1px solid var(--line);
+    width:28px; height:28px;
+    font-size:0.85rem;
+    line-height:1;
+    color:var(--navy);
+    cursor:pointer;
+  }
+  .cal-nav:hover{ background:rgba(52,74,104,0.08); }
+  .cal-nav:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+  .cal-nav:disabled{ border-color:var(--line-soft); color:var(--ink-faint); cursor:default; }
+  .cal-nav:disabled:hover{ background:none; }
+  .cal-weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    text-align:center;
+    font-size:0.76rem;
+    color:var(--ink-faint);
+    letter-spacing:0.02em;
+    margin-bottom:6px;
+  }
+  .cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:4px;
+  }
+  .cal-day{
+    aspect-ratio:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:none;
+    border:1px solid transparent;
+    border-radius:2px;
+    font-size:0.9rem;
+    color:var(--ink);
+    cursor:pointer;
+    font-variant-numeric:tabular-nums;
+  }
+  .cal-day:hover:not(:disabled){ border-color:var(--navy); }
+  .cal-day:focus-visible{ outline:2px solid var(--navy); outline-offset:1px; }
+  .cal-day:disabled{
+    background:#efece5;
+    color:#c2beb6;
+    text-decoration:line-through;
+    text-decoration-color:#c2beb6;
+    cursor:default;
+  }
+  .cal-day.is-empty{ visibility:hidden; background:none; }
+  .cal-day.is-selected{ background:var(--navy); color:#fff; border-color:var(--navy); }
+
+  .cal-legend{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:16px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .cal-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .cal-dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .cal-dot-open{ background:var(--ink); }
+  .cal-dot-full{ background:#efece5; border:1px solid #c2beb6; }
+  .cal-dot-selected{ background:var(--navy); }
+  .time-widget{ margin-top:20px; padding-top:18px; border-top:1px solid var(--line-soft); }
+  .time-label{ font-size:0.82rem; color:var(--ink-soft); margin:0 0 12px; }
+  .time-slots{ display:flex; flex-wrap:wrap; gap:8px; }
+  .time-slot{
+    background:none;
+    border:1px solid var(--navy);
+    color:var(--navy);
+    font-size:0.82rem;
+    font-variant-numeric:tabular-nums;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .time-slot:hover:not(.is-selected){ background:rgba(52,74,104,0.08); }
+  .time-slot.is-selected{ background:var(--navy); color:#fff; }
+  .time-slot:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+  .time-slot:disabled{
+    background:#efece5;
+    color:#c2beb6;
+    text-decoration:line-through;
+    text-decoration-color:#c2beb6;
+    cursor:default;
+  }
+  .selected-summary{
+    padding:16px 2px 20px;
+    margin:0;
+    font-size:0.85rem;
+    color:var(--navy-deep);
+    min-height:1.4em;
+  }
+
+  .submit-row{ text-align:center; margin-top:36px; position:relative; }
+  .submit-btn{
+    font-family:"Old Standard TT", serif;
+    font-weight:700;
+    background:var(--ink-soft);
+    color:#fff;
+    border:1px solid var(--ink-soft);
+    font-size:0.85rem;
+    letter-spacing:0.3em;
+    padding:14px 51px;
+    cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .submit-btn:hover, .submit-btn:focus-visible{ background:#fff; color:var(--ink-soft); }
+  .submit-btn:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; }
+  .submit-btn:disabled{ cursor:default; }
+  .submit-row.is-loading .submit-btn{ color:transparent; }
+  .btn-spinner{ display:none; }
+  .submit-row.is-loading .btn-spinner{
+    display:block;
+    position:absolute;
+    top:50%; left:50%;
+    width:16px; height:16px;
+    margin:-8px 0 0 -8px;
+    border:2px solid rgba(255,255,255,0.4);
+    border-top-color:#fff;
+    border-radius:50%;
+    animation:rs-spin .7s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes rs-spin{ to{ transform:rotate(360deg); } }
+  .form-note{ text-align:center; margin-top:16px; font-size:0.78rem; color:var(--ink-soft); }
+
+  /* ---------- 予約完了 ---------- */
+  .calendar-error{ color:var(--red); font-size:0.85rem; margin:8px 0 0; }
+  .reserve-success{
+    text-align:center;
+    padding:56px 20px 40px;
+    animation:rs-fade-in .5s ease both;
+    scroll-margin-top:100px;
+  }
+  @keyframes rs-fade-in{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .reserve-success-icon{ margin:0 auto 20px; width:52px; height:52px; }
+  .rs-circle{
+    stroke:var(--navy);
+    stroke-width:2;
+    stroke-dasharray:151;
+    stroke-dashoffset:151;
+    animation:rs-circle .5s ease forwards;
+  }
+  .rs-check{
+    stroke:var(--navy);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:30;
+    stroke-dashoffset:30;
+    animation:rs-check .35s .45s ease forwards;
+  }
+  @keyframes rs-circle{ to{ stroke-dashoffset:0; } }
+  @keyframes rs-check{ to{ stroke-dashoffset:0; } }
+  .reserve-success-title{
+    font-family:"Noto Serif JP", serif;
+    font-weight:500;
+    font-size:clamp(1.2rem,2vw,1.5rem);
+    color:var(--ink);
+    margin:0 0 14px;
+  }
+  .reserve-success-text{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.9;
+    margin:0;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <strong>◎ プレビュー版</strong>&nbsp;— これはstylecloset.jp本番の内容をそのまま再現したデザイン確認用のコピーです(GitHub Pages)。実際のご予約はこの画面からはできません(送信ボタンは見た目の確認用です)。日時カレンダーの空き状況もサンプルです。
+</div>
+
+<header class="site-header">
+  <span class="site-logo eng">STYLE CLOSET</span>
+</header>
+
+<section class="news-v3-lp-section" id="v3-lp">
+    <div class="news-v3-grid">
+      <div class="news-v3-visual reveal-img" id="v3-visual">
+        <img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-hero-kv2-mobile.jpg" alt="Even Realities G2 を身につけたスタイルイメージ">
+      </div>
+      <div class="news-v3-copy">
+        <h2 class="news-v3-headline">Even Realities G2</h2>
+        <p class="news-v3-slogan">Even G2. The everyday display of smart glasses.</p>
+        <p class="news-v3-lede">
+          AIが会話や翻訳をそっとサポートする、<br>
+          新しいメガネのかたち。 <span class="no-break">STYLE CLOSETで、</span><br>
+          その使い心地をぜひ体感してください。
+        </p>
+        <a class="news-v3-cta" href="#lp-reserve-form">試着のご予約はこちら</a>
+      </div>
+    </div>
+
+    <div class="news-v3-slider">
+      <button type="button" class="v3-slider-nav prev" id="v3-prev" aria-label="前の画像"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" aria-hidden="true"><path d="M7.5 1 L1.5 7 L7.5 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="news-v3-slider-track" id="v3-track">
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-g2a-angle.png" alt="Even Realities G2A スマートグラス（斜め）"></div>
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-g2b-front.png" alt="Even Realities G2B スマートグラス（B型・正面）"></div>
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-g2a-case.png" alt="Even Realities G2A スマートグラス（ケース入り）"></div>
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-fullset.jpg" alt="Even Realities G2 本体とアクセサリーがすべて揃った商品写真"></div>
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-clipon.png" alt="Even G2用 クリップオンサングラス（別売）"></div>
+        <div class="v3-slide"><img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-slide-ring.png" alt="Even R1 スマートリング（別売）"></div>
+      </div>
+      <button type="button" class="v3-slider-nav next" id="v3-next" aria-label="次の画像"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" aria-hidden="true"><path d="M1.5 1 L7.5 7 L1.5 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="v3-slider-dots" id="v3-dots"></div>
+
+    <div class="v3-copy-block">
+      <h3>Even G2<span class="h3-suffix">でできること</span></h3>
+    </div>
+    <div class="news-v3-feature-list feature-list-4col">
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-eveng2-0.png" alt="" aria-hidden="true"><div class="feature-text"><strong>会話サポート</strong><span class="sub">AIが理解・記憶・応答をサポート</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-eveng2-1.png" alt="" aria-hidden="true"><div class="feature-text"><strong>ライブ翻訳</strong><span class="sub">35以上の言語に対応し、双方向コミュニケーションを自然に</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-eveng2-2.png" alt="" aria-hidden="true"><div class="feature-text"><strong>テレプロンプト</strong><span class="sub">原稿を視界に提示。話す流れを自然にキープ</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-eveng2-3.png" alt="" aria-hidden="true"><div class="feature-text"><strong>その他の便利機能</strong><span class="sub">Even AI・ナビゲート・ダッシュボード・通知・クイックアシスト</span></div></div>
+    </div>
+
+    <div class="v3-copy-block">
+      <h3>スペック</h3>
+    </div>
+    <div class="spec-grid">
+    <dl class="spec-dl" id="spec-table">
+      <dt>重量</dt>
+      <dd>約36g<span class="spec-sub">長時間装用でも疲れにくい</span></dd>
+      <dt>フレーム</dt>
+      <dd>チタンテンプル<br>マグネシウムフレーム<span class="spec-sub">上質な素材と耐久性</span></dd>
+      <dt>カメラ</dt>
+      <dd>非搭載<span class="spec-sub">プライバシーに配慮した設計で、<br>データは安全に</span></dd>
+      <dt>バッテリー</dt>
+      <dd>2日間<span class="spec-sub">充電ケース併用で最長2週間</span></dd>
+      <dt>レンズ</dt>
+      <dd>度付きレンズに対応<span class="spec-sub">お客様の度数に<br>合わせてお仕立て</span></dd>
+    </dl>
+    <div class="spec-photo reveal-img">
+      <img src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/lp-spec-photo-case.png" alt="Even Realities G2 のディスプレイ表示イメージ">
+    </div>
+    </div>
+    <p class="spec-official-link">
+      <a href="https://www.evenrealities.com/ja-JP/smart-glasses" target="_blank" rel="noopener">メーカー公式サイトはこちら</a>
+    </p>
+
+    <div class="v3-copy-block">
+      <h3>商品概要</h3>
+    </div>
+    <div class="news-v3-overview">
+      <div class="overview-grid">
+        <dl>
+          <dt>商品名</dt><dd>Even Realities G2</dd>
+          <dt>カラー</dt>
+          <dd>グレー／ブラウン／グリーン（3色）</dd>
+          <dt>形状</dt>
+          <dd>G2A・G2B（2タイプ）</dd>
+          <dt>価格</dt><dd>¥99,800〜（<span class="no-break">レンズ・オプション</span>により<span class="no-break">変動）</span></dd>
+          <dt>お渡し</dt><dd>最短で当日〜、度付きレンズは約4週間</dd>
+        </dl>
+
+        <div class="model-switcher" id="model-switcher" data-base-path="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/model-">
+          <div class="model-switcher-photo">
+            <img id="model-switch-img" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/model-grey-a.png" alt="Even Realities G2 グレー G2Aフレーム">
+          </div>
+          <div class="model-switcher-tabs">
+            <button type="button" class="model-tab is-active" data-shape="a">
+              <span class="model-tab-label">G2Aフレーム</span>
+            </button>
+            <button type="button" class="model-tab" data-shape="b">
+              <span class="model-tab-label">G2Bフレーム</span>
+            </button>
+          </div>
+          <div class="model-switcher-colors">
+            <button type="button" class="color-dot-btn is-active" data-color="grey" aria-label="グレー"><span class="color-dot" style="background:#8a8a86"></span></button>
+            <button type="button" class="color-dot-btn" data-color="brown" aria-label="ブラウン"><span class="color-dot" style="background:#6b4a3a"></span></button>
+            <button type="button" class="color-dot-btn" data-color="green" aria-label="グリーン"><span class="color-dot" style="background:#4a5d43"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mid-cta">
+      <a class="news-v3-cta" href="#lp-reserve-form">まずは体験してみる</a>
+    </div>
+
+    <div class="v3-copy-block" style="margin-top:clamp(40px,5vw,56px);">
+      <h3>STYLE CLOSET<span class="h3-suffix">でできること</span></h3>
+    </div>
+    <div class="news-v3-feature-list feature-list-4col">
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-style-0.png" alt="" aria-hidden="true"><div class="feature-text"><strong>度付き対応可</strong><span class="sub">お渡しまで約4週間</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-style-1.png" alt="" aria-hidden="true"><div class="feature-text"><strong>度なし即日渡し可</strong><span class="sub">在庫状況で変動</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-style-2.png" alt="" aria-hidden="true"><div class="feature-text"><strong>実機体験・ご相談</strong><span class="sub">約30分</span></div></div>
+      <div class="feature-item"><img class="feature-icon" src="https://stylecloset.jp/wp/wp-content/themes/stylecloset-child/lp-assets/even-realities-g2/images/icon-style-3.png" alt="" aria-hidden="true"><div class="feature-text"><strong>購入・<span class="no-break">度数測定</span></strong><span class="sub">約90分</span></div></div>
+    </div>
+
+    <div class="news-v3-overview" id="lp-reserve-form" style="margin-top:0; padding-top:0;">
+      <div style="max-width:640px; margin:0 auto;">
+        <div class="v3-copy-block" style="max-width:none; padding:0;">
+          <h3>ご予約フォーム</h3>
+        </div>
+
+        <form class="wpcf7-form" id="lp-form">
+          <div class="form-fields">
+            <div class="form-row">
+              <label>ご希望の内容<span class="attention">※</span></label>
+              <span class="wpcf7-form-control wpcf7-radio">
+                <span class="wpcf7-list-item first"><label><input type="radio" name="purpose" value="ご相談（30分）" checked><span class="wpcf7-list-item-label">ご相談（30分）</span></label></span>
+                <span class="wpcf7-list-item last"><label><input type="radio" name="purpose" value="購入・度数測定（90分）"><span class="wpcf7-list-item-label">購入・度数測定（90分）</span></label></span>
+              </span>
+            </div>
+            <div class="form-row">
+              <label for="f-name">お名前<span class="attention">※</span></label>
+              <input type="text" name="your-name" id="f-name" class="field-input" placeholder="例）山田 太郎" required>
+            </div>
+            <div class="form-row">
+              <label for="f-kana">フリガナ<span class="attention">※</span></label>
+              <input type="text" name="your-name-kana" id="f-kana" class="field-input" placeholder="例）ヤマダ タロウ" required>
+            </div>
+            <div class="form-row">
+              <label for="f-email">メールアドレス<span class="attention">※</span></label>
+              <input type="email" name="your-email" id="f-email" class="field-input" placeholder="例）example@mail.com" required>
+            </div>
+            <div class="form-row">
+              <label for="f-email-confirm">メールアドレス確認<span class="attention">※</span></label>
+              <input type="email" name="your-email_confirm" id="f-email-confirm" class="field-input" placeholder="確認のためもう一度入力してください" required>
+            </div>
+            <div class="form-row">
+              <label for="f-tel">お電話番号<span class="attention">※</span></label>
+              <input type="tel" name="your-tel" id="f-tel" class="field-input" placeholder="例）09012345678（ハイフンなし）" required>
+            </div>
+          </div>
+
+          <div class="calendar-field">
+            <div class="calendar-label">ご希望日時<span class="attention">※</span></div>
+            <div class="calendar-widget">
+              <div class="cal-header">
+                <button type="button" class="cal-nav" id="lp-cal-prev" aria-label="前の月">&lsaquo;</button>
+                <span class="cal-month" id="lp-cal-month-label"></span>
+                <button type="button" class="cal-nav" id="lp-cal-next" aria-label="次の月">&rsaquo;</button>
+              </div>
+              <div class="cal-weekdays">
+                <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+              </div>
+              <div class="cal-grid" id="lp-cal-grid"></div>
+              <div class="cal-legend">
+                <span><i class="cal-dot cal-dot-open"></i>予約可能</span>
+                <span><i class="cal-dot cal-dot-full"></i>空きなし</span>
+                <span><i class="cal-dot cal-dot-selected"></i>選択中</span>
+              </div>
+            </div>
+            <div class="time-widget" id="lp-time-widget" hidden>
+              <p class="time-label">ご希望の時間帯</p>
+              <div class="time-slots" id="lp-time-slots"></div>
+            </div>
+            <p class="selected-summary" id="lp-selected-summary"></p>
+            <p class="calendar-error" id="lp-calendar-error" hidden>ご希望日時を選択してください</p>
+            <input type="hidden" name="reserve-date" id="lp-reserve-date-hidden" value="">
+            <input type="hidden" name="reserve-time" id="lp-reserve-time-hidden" value="">
+          </div>
+
+          <div class="form-fields" style="margin-top:28px;">
+            <div class="form-row">
+              <label for="f-message">ご要望</label>
+              <textarea name="your-request" id="f-message" class="field-textarea" rows="4" placeholder="ご要望があればご記入ください"></textarea>
+            </div>
+          </div>
+          <div class="submit-row">
+            <input type="submit" class="submit-btn" value="予約する（サンプル）">
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </div>
+          <p class="form-note">送信後、ご予約確定のメールをお送りします。</p>
+          <p class="form-note" style="margin-top:10px;">※ご予約のキャンセル・日時変更は、お電話にて店舗までご連絡ください。<span style="display:block;margin-top:6px;">STYLE CLOSET　048-644-0001</span></p>
+        </form>
+
+        <div class="reserve-success" id="lp-reserve-success" hidden>
+          <div class="reserve-success-icon" aria-hidden="true">
+            <svg viewBox="0 0 52 52" width="52" height="52">
+              <circle class="rs-circle" cx="26" cy="26" r="24" fill="none"/>
+              <path class="rs-check" fill="none" d="M14 27l8 8 16-16"/>
+            </svg>
+          </div>
+          <h3 class="reserve-success-title">ご予約ありがとうございます</h3>
+          <p class="reserve-success-text">ご入力いただいたメールアドレスに確認メールをお送りしました。<br>店舗にてお会いできるのを楽しみにしております。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a class="sticky-cta-btn" href="#lp-reserve-form">ご来店予約はこちら</a>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="閉じる">&times;</button>
+  <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="前の画像">&lsaquo;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="次の画像">&rsaquo;</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  // 画像スライダー
+  (function(){
+    const track = document.getElementById('v3-track');
+    const dotsWrap = document.getElementById('v3-dots');
+    const prevBtn = document.getElementById('v3-prev');
+    const nextBtn = document.getElementById('v3-next');
+    if(!track) return;
+    const slides = [...track.children];
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      if(i === 0) b.classList.add('is-active');
+      b.addEventListener('click', () => slides[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}));
+      dotsWrap.appendChild(b);
+    });
+    const dots = [...dotsWrap.children];
+    function updateDots(){
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let closest = 0, min = Infinity;
+      slides.forEach((s, i) => {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs((r.left + r.width / 2) - trackCenter);
+        if(d < min){ min = d; closest = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+    }
+    function slideStep(){
+      return slides.length > 1
+        ? slides[1].getBoundingClientRect().left - slides[0].getBoundingClientRect().left
+        : track.clientWidth;
+    }
+    track.addEventListener('scroll', () => { clearTimeout(track._t); track._t = setTimeout(updateDots, 100); }, {passive:true});
+    prevBtn.addEventListener('click', () => track.scrollBy({left:-slideStep(), behavior:'smooth'}));
+    nextBtn.addEventListener('click', () => track.scrollBy({left:slideStep(), behavior:'smooth'}));
+  })();
+
+  // 商品概要：G2A/G2B フレーム × カラー切り替え
+  (function(){
+    const wrap = document.getElementById('model-switcher');
+    const img = document.getElementById('model-switch-img');
+    if(!wrap || !img) return;
+    const basePath = wrap.dataset.basePath;
+    const tabs = wrap.querySelectorAll('.model-tab');
+    const colorBtns = wrap.querySelectorAll('.color-dot-btn');
+    const COLOR_LABELS = {grey:'グレー', brown:'ブラウン', green:'グリーン'};
+    const SHAPE_LABELS = {a:'G2Aフレーム', b:'G2Bフレーム'};
+    let shape = 'a', color = 'grey';
+
+    function render(){
+      img.src = basePath + color + '-' + shape + '.png';
+      img.alt = 'Even Realities G2 ' + COLOR_LABELS[color] + ' ' + SHAPE_LABELS[shape];
+    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        shape = tab.dataset.shape;
+        render();
+      });
+    });
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        colorBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        color = btn.dataset.color;
+        render();
+      });
+    });
+  })();
+
+  // 画像スライダー：クリックで拡大表示・拡大中も前後に送れる
+  (function(){
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    if(!lightbox) return;
+    const slideImgs = [...document.querySelectorAll('.v3-slide img')];
+    let current = 0;
+
+    function show(i){
+      current = (i + slideImgs.length) % slideImgs.length;
+      const img = slideImgs[current];
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+    }
+    slideImgs.forEach((img, i) => {
+      img.addEventListener('click', () => {
+        show(i);
+        lightbox.classList.add('is-open');
+      });
+    });
+    function closeLightbox(){
+      lightbox.classList.remove('is-open');
+      lightboxImg.src = '';
+    }
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', () => show(current - 1));
+    nextBtn.addEventListener('click', () => show(current + 1));
+    lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if(!lightbox.classList.contains('is-open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowRight') show(current + 1);
+      if(e.key === 'ArrowLeft') show(current - 1);
+    });
+  })();
+
+  // 追従CTA：ヒーロー・予約フォームが見えている間は隠す
+  (function(){
+    const bar = document.getElementById('sticky-cta');
+    const hero = document.querySelector('.news-v3-grid');
+    const form = document.getElementById('lp-reserve-form');
+    if(!bar || !hero || !form) return;
+    let heroVisible = true, formVisible = false;
+    function update(){
+      bar.classList.toggle('is-visible', !heroVisible && !formVisible);
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.target === hero) heroVisible = e.isIntersecting;
+        if(e.target === form) formVisible = e.isIntersecting;
+      });
+      update();
+    }, {threshold:0});
+    io.observe(hero);
+    io.observe(form);
+  })();
+
+  // 画像のフェードイン
+  (function(){
+    const targets = document.querySelectorAll('.reveal-img');
+    if(!targets.length) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-revealed'); io.unobserve(e.target); } });
+    }, {threshold:0.2});
+    targets.forEach(t => io.observe(t));
+  })();
+
+  // 予約カレンダー（プレビュー用のサンプル空き状況。本番はBooklyの実データと連携）
+  (function(){
+    const monthLabel = document.getElementById('lp-cal-month-label');
+    const grid = document.getElementById('lp-cal-grid');
+    const prevBtn = document.getElementById('lp-cal-prev');
+    const nextBtn = document.getElementById('lp-cal-next');
+    const timeWidget = document.getElementById('lp-time-widget');
+    const timeSlots = document.getElementById('lp-time-slots');
+    const summary = document.getElementById('lp-selected-summary');
+    const dateHidden = document.getElementById('lp-reserve-date-hidden');
+    const timeHidden = document.getElementById('lp-reserve-time-hidden');
+    if(!grid) return;
+
+    // サンプルの予約済み枠(架空のデータ、実際の空き状況ではありません)
+    const SAMPLE_BOOKED = {
+      '2026-09-10': [{start:'11:00', end:'11:30'}, {start:'14:00', end:'15:30'}],
+      '2026-09-12': [{start:'10:00', end:'20:00'}],
+      '2026-09-18': [{start:'13:00', end:'13:30'}]
+    };
+    const SAMPLE_HOLIDAYS = ['2026-09-15'];
+
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let viewYear = now.getFullYear(), viewMonth = now.getMonth();
+    let selectedDate = null, selectedTime = null;
+    const OPEN_MINUTES = 10 * 60;
+    const CLOSE_MINUTES = 20 * 60;
+    function minutesToTime(min){
+      const h = Math.floor(min / 60), mi = min % 60;
+      return (h < 10 ? '0' : '') + h + ':' + (mi < 10 ? '0' : '') + mi;
+    }
+    function generateTimes(durationMin){
+      const times = [];
+      for(let t = OPEN_MINUTES; t + durationMin <= CLOSE_MINUTES; t += durationMin){
+        times.push(minutesToTime(t));
+      }
+      return times;
+    }
+    const TIMES_PURCHASE = generateTimes(90);
+    const TIMES_CONSULT = generateTimes(30);
+    function getSelectedTimes(){
+      return getSelectedDuration() === 90 ? TIMES_PURCHASE : TIMES_CONSULT;
+    }
+
+    function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+    function isoDate(y, m, d){ return `${y}-${pad2(m+1)}-${pad2(d)}`; }
+
+    function bookedTimesFor(y, m, d){ return SAMPLE_BOOKED[isoDate(y, m, d)] || []; }
+    function isHoliday(y, m, d){ return SAMPLE_HOLIDAYS.includes(isoDate(y, m, d)); }
+
+    function getSelectedPurpose(){
+      const checked = document.querySelector('input[name="purpose"]:checked');
+      return checked ? checked.value : '';
+    }
+    function getSelectedDuration(){
+      return getSelectedPurpose().indexOf('購入') !== -1 ? 90 : 30;
+    }
+    function timeToMinutes(t){
+      const [h, mi] = t.split(':').map(Number);
+      return h * 60 + mi;
+    }
+    function rangesOverlap(aStart, aEnd, bStart, bEnd){
+      return aStart < bEnd && bStart < aEnd;
+    }
+    function isSlotBooked(y, m, d, startTime, durationMin){
+      const booked = bookedTimesFor(y, m, d);
+      const start = timeToMinutes(startTime);
+      const end = start + durationMin;
+      return booked.some(b => rangesOverlap(start, end, timeToMinutes(b.start), timeToMinutes(b.end)));
+    }
+    function isFullyBooked(y, m, d){
+      const duration = getSelectedDuration();
+      const booked = bookedTimesFor(y, m, d);
+      if(!booked.length) return false;
+      return getSelectedTimes().every(t => isSlotBooked(y, m, d, t, duration));
+    }
+
+    function isPastDate(y, m, d){
+      return new Date(y, m, d) <= today;
+    }
+
+    const maxMonth = new Date(now.getFullYear(), now.getMonth() + 2, 1);
+
+    function render(){
+      monthLabel.textContent = `${viewYear}年${viewMonth+1}月`;
+      prevBtn.disabled = (viewYear === now.getFullYear() && viewMonth === now.getMonth());
+      nextBtn.disabled = (viewYear === maxMonth.getFullYear() && viewMonth === maxMonth.getMonth());
+      grid.innerHTML = '';
+      const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+      const daysInMonth = new Date(viewYear, viewMonth+1, 0).getDate();
+      for(let i=0;i<firstDay;i++){
+        const e = document.createElement('span');
+        e.className = 'cal-day is-empty';
+        grid.appendChild(e);
+      }
+      for(let d=1; d<=daysInMonth; d++){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-day';
+        btn.textContent = d;
+        if(isFullyBooked(viewYear, viewMonth, d) || isPastDate(viewYear, viewMonth, d) || isHoliday(viewYear, viewMonth, d)){ btn.disabled = true; }
+        if(selectedDate && selectedDate.y===viewYear && selectedDate.m===viewMonth && selectedDate.d===d){
+          btn.classList.add('is-selected');
+        }
+        btn.addEventListener('click', () => {
+          selectedDate = {y:viewYear, m:viewMonth, d};
+          selectedTime = null;
+          render();
+          renderTimes();
+        });
+        grid.appendChild(btn);
+      }
+    }
+
+    function renderTimes(){
+      if(!selectedDate){ timeWidget.hidden = true; return; }
+      timeWidget.hidden = false;
+      timeSlots.innerHTML = '';
+      const duration = getSelectedDuration();
+      getSelectedTimes().forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'time-slot';
+        b.textContent = t;
+        if(isSlotBooked(selectedDate.y, selectedDate.m, selectedDate.d, t, duration)){ b.disabled = true; }
+        if(selectedTime === t) b.classList.add('is-selected');
+        b.addEventListener('click', () => { selectedTime = t; renderTimes(); updateSummary(); });
+        timeSlots.appendChild(b);
+      });
+      updateSummary();
+    }
+
+    function updateSummary(){
+      if(selectedDate && selectedTime){
+        const {y,m,d} = selectedDate;
+        const dateStr = `${y}年${m+1}月${d}日`;
+        summary.textContent = `ご希望日時：${dateStr} ${selectedTime}`;
+        dateHidden.value = isoDate(y, m, d);
+        timeHidden.value = selectedTime;
+      } else {
+        summary.textContent = '';
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      viewMonth--; if(viewMonth < 0){ viewMonth = 11; viewYear--; }
+      render(); renderTimes();
+    });
+    nextBtn.addEventListener('click', () => {
+      viewMonth++; if(viewMonth > 11){ viewMonth = 0; viewYear++; }
+      render(); renderTimes();
+    });
+    document.querySelectorAll('input[name="purpose"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        selectedTime = null;
+        render();
+        renderTimes();
+      });
+    });
+
+    render();
+    renderTimes();
+  })();
+
+  // 送信中・完了時の見た目(プレビューのため実際には送信せずシミュレーションのみ)
+  (function(){
+    const form = document.getElementById('lp-form');
+    if(!form) return;
+    const submitBtn = form.querySelector('.submit-btn');
+    const submitRow = submitBtn ? submitBtn.closest('.submit-row') : null;
+    const dateHidden = document.getElementById('lp-reserve-date-hidden');
+    const timeHidden = document.getElementById('lp-reserve-time-hidden');
+    const calendarError = document.getElementById('lp-calendar-error');
+    const successPanel = document.getElementById('lp-reserve-success');
+    if(!submitBtn || !submitRow || !successPanel) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if(!dateHidden.value || !timeHidden.value){
+        calendarError.hidden = false;
+        calendarError.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
+      calendarError.hidden = true;
+      submitRow.classList.add('is-loading');
+      setTimeout(() => {
+        form.hidden = true;
+        successPanel.hidden = false;
+        successPanel.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 700);
+    });
+  })();
+
+});
+</script>
+</body>
+</html>
