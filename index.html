@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Even Realities G2 | STYLE CLOSET</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 
@@ -783,9 +784,59 @@
     margin:0;
   }
 
+  /* ---------- 合言葉ゲート ---------- */
+  body.locked > *:not(#pw-gate){ display:none !important; }
+  #pw-gate{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  body:not(.locked) #pw-gate{ display:none; }
+  .pw-box{
+    max-width:320px;
+    width:100%;
+    text-align:center;
+  }
+  .pw-box p{ font-size:0.85rem; color:var(--ink-soft); margin:0 0 16px; }
+  .pw-box input[type="password"]{
+    width:100%;
+    padding:12px;
+    font-size:1rem;
+    border:1px solid var(--line);
+    margin-bottom:12px;
+    box-sizing:border-box;
+    font-family:inherit;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .pw-box button{
+    width:100%;
+    padding:12px;
+    font-size:0.95rem;
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .pw-box button:hover{ background:var(--navy-deep); }
+  .pw-error{ color:var(--red); font-size:0.82rem; margin:0 0 10px; display:none; }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <p>合言葉を入力してください</p>
+    <p class="pw-error" id="pw-error">合言葉が違います。もう一度お試しください。</p>
+    <form id="pw-form">
+      <input type="password" id="pw-input" placeholder="合言葉" autocomplete="off">
+      <button type="submit">確認する</button>
+    </form>
+  </div>
+</div>
 
 <div class="preview-bar">
   <strong>◎ プレビュー版</strong>&nbsp;— これはstylecloset.jp本番の内容をそのまま再現したデザイン確認用のコピーです(GitHub Pages)。実際のご予約はこの画面からはできません(送信ボタンは見た目の確認用です)。日時カレンダーの空き状況もサンプルです。
@@ -1015,6 +1066,32 @@
 </div>
 
 <script>
+(function(){
+  var PASSWORD = 'g2preview2026';
+  var STORAGE_KEY = 'scc_g2lp_authed';
+  try {
+    if(localStorage.getItem(STORAGE_KEY) === PASSWORD){
+      document.body.classList.remove('locked');
+    }
+  } catch(e){}
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('pw-form');
+    var input = document.getElementById('pw-input');
+    var error = document.getElementById('pw-error');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(input.value === PASSWORD){
+        try { localStorage.setItem(STORAGE_KEY, PASSWORD); } catch(e){}
+        document.body.classList.remove('locked');
+      } else {
+        error.style.display = 'block';
+      }
+    });
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', function(){
 
   // 画像スライダー
